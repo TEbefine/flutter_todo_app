@@ -29,6 +29,7 @@ class _HomeState extends State<Home> {
       body: Stack(
         children: [
           Container(
+            margin: const EdgeInsets.only(bottom: 60),
             padding: const EdgeInsets.symmetric(
               horizontal: 20,
               vertical: 15,
@@ -93,6 +94,9 @@ class _HomeState extends State<Home> {
                       decoration: const InputDecoration(
                           hintText: 'Add a new todo item',
                           border: InputBorder.none),
+                      onSubmitted: (String value) {
+                        _addTodoItem(value);
+                      },
                     ),
                   ),
                 ),
@@ -134,6 +138,11 @@ class _HomeState extends State<Home> {
   }
 
   void _addTodoItem(String todo) {
+    if (_todoController.text.trim().isEmpty) {
+      print("You task can't be null");
+      return;
+    }
+
     setState(() {
       todoList.add(Todo(
           id: DateTime.now().microsecondsSinceEpoch.toString(),
