@@ -139,7 +139,20 @@ class _HomeState extends State<Home> {
 
   void _addTodoItem(String todo) {
     if (_todoController.text.trim().isEmpty) {
-      print("You task can't be null");
+      final snackBar = SnackBar(
+        content: const Text("Task can't be Empty"),
+        action: SnackBarAction(
+            label: 'Undo', onPressed: () => _todoController.clear()),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      return;
+    } else if (_todoController.text.trim().isEmpty) {
+      final snackBar = SnackBar(
+        content: const Text("Task can't be Empty"),
+        action: SnackBarAction(
+            label: 'Undo', onPressed: () => _todoController.clear()),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
       return;
     }
 
