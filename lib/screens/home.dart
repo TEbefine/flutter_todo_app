@@ -146,9 +146,9 @@ class _HomeState extends State<Home> {
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       return;
-    } else if (_todoController.text.trim().isEmpty) {
+    } else if (RegExp(r'^\d+$').hasMatch(_todoController.text.trim())) {
       final snackBar = SnackBar(
-        content: const Text("Task can't be Empty"),
+        content: const Text("Task cannot be only numbers"),
         action: SnackBarAction(
             label: 'Undo', onPressed: () => _todoController.clear()),
       );
